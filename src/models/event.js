@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const eventSchema = new Schema ({
-  title: { 
-    type: String, 
-    required: true 
+const eventSchema = new Schema({
+  title: {
+    type: String,
+    required: true
   },
   description: {
     type: String,
@@ -20,12 +20,9 @@ const eventSchema = new Schema ({
     required: true
   },
   creator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+      type: Schema.Types.ObjectId,
+      ref: 'User'
   }
 });
 
-const Event = mongoose.model('Event', eventSchema);
-
-
-export default Event;
+module.exports = mongoose.model('Event', eventSchema);

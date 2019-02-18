@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const bookingSchema = new Schema (
+const bookingSchema = new Schema(
   {
     event: {
       type: Schema.Types.ObjectId,
@@ -16,7 +16,4 @@ const bookingSchema = new Schema (
   { timestamps: true }
 );
 
-const Booking = mongoose.model('Booking', bookingSchema);
-
-
-export default Booking;
+module.exports = mongoose.model('Booking', bookingSchema);

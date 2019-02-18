@@ -1,15 +1,16 @@
 //Dependecies
-import express from 'express';
-import morgan from 'morgan';
-import path from 'path';
-import graphqlHttp from 'express-graphql';
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+const graphqlHttp = require('express-graphql');
+const isAuth = require('./middleware/is-auth');
 
 //GraphQl
-import graphiQlSchema from './graphql/schema';
-import graphQlResolvers from './graphql/resolvers';
+const graphQlSchema = require('./graphql/schema');
+const graphQlResolvers = require('./graphql/resolvers');
 
 //DB
-import mongo from './database/mongo';
+const mongo = require('./database/mongo');
 
 //Server
 const app = express();
@@ -20,10 +21,11 @@ app.set('port', process.env.PORT || 3000);
 //Middlewares 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(isAuth);
 
 //Routes
 app.use('/graphql', graphqlHttp({
-  schema: graphiQlSchema,
+  schema: graphQlSchema,
   rootValue: graphQlResolvers,
   graphiql: true
 }));

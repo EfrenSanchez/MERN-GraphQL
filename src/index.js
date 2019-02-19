@@ -16,14 +16,23 @@ const mongo = require('./database/mongo');
 const app = express();
 
 // Setting
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 
 //Middlewares 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use((req,res,next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if(req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(isAuth);
 
-//Routes
+//Endpoint
 app.use('/graphql', graphqlHttp({
   schema: graphQlSchema,
   rootValue: graphQlResolvers,
@@ -31,7 +40,7 @@ app.use('/graphql', graphqlHttp({
 }));
 
 //Static Files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/public')));
 
 // Listen server
 if (mongo) {

@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  width: 100%;
+  display: block;
+}
+
+.form-control input {
+  height: 2rem;
+  font-size: medium;
+}
+
+.form-control label {
+  margin-bottom: 0.5rem;
+  color: cornflowerblue;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.form-actions button,
+.btn {
+  background-color: transparent;
+  font: inherit;
+  text-transform: uppercase;
+  border: 2px solid cornflowerblue;
+  padding: 0.25rem 1rem;
+  margin-right: 1rem;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.30);
+  cursor: pointer;
+  color: cornflowerblue;
+  outline: none;
+}
+
+.form-actions button:hover,
+.form-actions button:active
+.btn:hover,
+.btn:active {
+  opacity: .85; 
+  box-shadow: none;
+}

@@ -14,7 +14,7 @@ const MainNav = props => (
       return (
         <header className="main-nav">
           <div className="main-nav__logo">
-            <NavLink to="/events"><h1>EasyEvent</h1></NavLink>
+            <NavLink to="/events"><h1>Book a Event</h1></NavLink>
           </div>
           <nav className="main-nav__item">
             <ul>

@@ -2,7 +2,7 @@
 import React from "react";
 
 //Style
-import "./Spiner.css";
+import "./Spinner.css";
 
 const spinner = props => (
   <div className="spinner">

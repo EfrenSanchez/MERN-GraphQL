@@ -44,7 +44,7 @@ module.exports = {
     }
     const token = jwt.sign(
       { userId: user.id, email: user.email},
-      'supersecretkey',
+      process.env.SECRET,
       { expiresIn: '1h' }
     );
     return { 

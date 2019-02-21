@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 //Dependecies
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const graphqlHttp = require('express-graphql');
 const isAuth = require('./middleware/is-auth');
+const graphqlHttp = require('express-graphql');
 
 //GraphQl
 const graphQlSchema = require('./graphql/schema');
@@ -20,7 +22,9 @@ app.set('port', process.env.PORT || 8000);
 
 //Middlewares 
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
 app.use((req,res,next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
@@ -30,17 +34,29 @@ app.use((req,res,next) => {
   }
   next();
 });
+
 app.use(isAuth);
 
-//Endpoint
+//Routes
 app.use('/graphql', graphqlHttp({
   schema: graphQlSchema,
   rootValue: graphQlResolvers,
   graphiql: true
 }));
+app.use('/', require('./routes'));
 
 //Static Files
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 404
+app.use( (req, res, next) => {
+  return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
+});
+
+// 500 - Any server error
+app.use( (err, req, res, next) => {
+  return res.status(500).send({ error: err });
+});
 
 // Listen server
 if (mongo) {

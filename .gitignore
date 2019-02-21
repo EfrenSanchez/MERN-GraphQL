@@ -1,4 +1,4 @@
 node_modules/
 nodemon.json/
 .DS_Store/
-database
+.env

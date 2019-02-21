@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URI = 'mongodb://localhost/react-practice';
+const URI = process.env.DB;
 
 module.exports = mongoose.connect(URI, { useNewUrlParser: true })
   .then(db => console.log('DB is connected'))

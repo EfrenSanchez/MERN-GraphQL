@@ -31,6 +31,8 @@ Example using npm:
 
 ##### `$ npm install`
 
+*You need to create a `.env` file and add it 2 variables: `SECRET= <secretkey>` and `DB=<mongoDB:conection>`*
+
 #### 📋 Available Scripts 📋
 
 In the project directory, you can run:

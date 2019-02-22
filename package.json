@@ -1,18 +1,19 @@
 {
-  "name": "react-practice",
+  "name": "Book a event",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create, read and book events",
   "main": "src/index.js",
   "scripts": {
     "server:dev": "nodemon --exec node src/index.js --ignore client",
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
+    "build": "NODE_ENV=production webpack --mode production",
+    "build:dev": "NODE_ENV=development webpack --mode development",
     "dev": "webpack-dev-server --mode development --open",
-    "start": "npm run build && node src/index.js"
+    "postinstall": "npm run build",
+    "start": "node src/index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "efren.sanchezgon@gmail.com",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "chart.js": "^1.1.1",
